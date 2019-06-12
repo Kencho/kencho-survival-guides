@@ -18,8 +18,8 @@ Por defecto `vi` se inicia en el modo de comandos/acciones.
 
 Aquí no se edita el texto como tal. Algunos comandos comunes son:
 
-- Pulsar `d,d` para borrar la línea actual.
 - Pulsar `i` para entrar en el modo de inserción.
+- Pulsar `d`,`d` para borrar la línea actual.
 - Escribir `:wq` para guardar y salir (`w` de _write_, escritura, y `q` de _quit_, salir).
 - Escribir `:q!` para salir sin guardar (la exclamación forzará la operación).
 
