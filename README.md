@@ -8,7 +8,7 @@ Short survival guides on a number of technology subjects.
 
 - Español/Spanish
 
-  - [vi editor](../master/es/vi-editor.md)
+  - [El editor vi](../master/es/vi-editor.md)
 
 ## Contributors
 
