@@ -9,6 +9,7 @@ Short survival guides on a number of technology subjects.
 - Español/Spanish
 
   - [El editor vi](../master/es/vi-editor.md)
+  - [Docker](../master/es/docker.md)
 
 ## Contributors
 
