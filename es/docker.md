@@ -74,8 +74,25 @@ sudo docker run -dit --rm --name apache -p 8080:80 -v "$PWD":/usr/local/apache2/
 sudo docker exec -it apache /bin/bash
 ```
 
+## Definir variables de entorno en el contenedor
+
+Una forma de parametrizar la ejecución de una imagen concreta al levantar un contenedor a partir de ella es definir variables de entorno.
+
+Si por ejemplo, ejecutamos
+
+```bash
+sudo docker run --rm --name ubuntu_test ubuntu /usr/bin/env
+```
+
+podremos ver las variables de entorno definidas por defecto al lanzar un contenedor de la imagen ubuntu.
+
+Para definir nuevas variables de entorno, usaríamos el parámetro `-e 'Variable=Valor'` tantas veces como sea necesario. Por ejemplo:
+
+```bash
+sudo docker run --rm -e 'TEXT1=Hola Docker!' -e 'TEXT2=Lorem ipsum' --name ubuntu_test ubuntu /usr/bin/env
+```
+
 **TO DO**:
 
-- Variables de entorno
 - Volúmenes
 - Imágenes personalizadas
