@@ -158,8 +158,17 @@ cat /tmp/data_dir/file # DATA1
 cat /tmp/read_only_data_dir/file # <vacío>
 ```
 
-**TO DO**:
+## Mapeo de puertos
 
-- Puertos
+Algunas imágenes exponen ciertos puertos para abrir conexiones remotas. Para mapear puertos externos (en la máquina anfitriona) a los internos del contenedor, se usa el parámetro `-p puerto_anfitrion:puerto_contenedor` tantas veces como sea necesario. En el ejemplo que mencionábamos anteriormente del servidor Apache mapeábamos el puerto `8080` del anfitrión al puerto `80` del servidor en el contenedor:
+
+```bash
+sudo docker run -dit --rm --name apache -p 8080:80 -v "$PWD":/usr/local/apache2/htdocs/ httpd:2.4
+```
+
+Si, mientras está activo el contenedor, accedemos a la URL `http://localhost:8080` podremos ver que efectivamente, el servidor web Apache está escuchando en ese puerto.
+
+## TO DO
+
 - Imágenes personalizadas
 - docker-compose
