@@ -59,6 +59,15 @@ El código de retorno de `docker run` será el devuelto por este proceso al cerr
 
 Los procesos del contenedor son realmente procesos del anfitrión pero "enjaulados" en un entorno controlado (el contenedor). Si abrimos un nuevo terminal en el anfitrión antes de cerrar el contenedor anterior, y examinamos los procesos, veremos que aparece nuestro `bash` del contenedor listado como un proceso más, hijo de un proceso `containerd-shim`, y éste hijo de `containerd`. Los procesos de los contenedores están, por tanto, utilizando el kernel de la máquina anfitriona.
 
+## Ejecutar un comando sobre un contenedor activo
+
+Si queremos ejecutar un comando sobre un contenedor en ejecución podemos utilizar `docker exec`. Es muy útil por ejemplo cuando el contenedor va a ejecutar un servicio permanentemente y queremos acceder a un terminal en su interior. Por ejemplo, si queremos ejecutar un servidor web Apache con la aplicación del directorio actual, y después abrir un terminal dentro del contenedor:
+
+```bash
+sudo docker run -dit --rm --name apache -p 8080:80 -v "$PWD":/usr/local/apache2/htdocs/ httpd:2.4
+sudo docker exec -it apache /bin/bash
+```
+
 **TO DO**:
 
 - Variables de entorno
