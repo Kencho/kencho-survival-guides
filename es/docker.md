@@ -88,6 +88,20 @@ Esto lo detendrá pero no lo borrará si éste no se ha lanzado con el parámetr
 sudo docker rm apache
 ```
 
+## Obtener información de imágenes y contenedores
+
+Para obtener información de imágenes instaladas se usará el comando `docker image inspect tag_de_imagen`. Por ejemplo:
+
+```bash
+sudo docker image inspect ubuntu:latest
+```
+
+Para obtener la información de un contenedor, la sintaxis es similar: `docker [container] inspect nombre_del_contenedor`:
+
+```bash
+sudo docker inspect ubuntu_bash
+```
+
 ## Definir variables de entorno en el contenedor
 
 Una forma de parametrizar la ejecución de una imagen concreta al levantar un contenedor a partir de ella es definir variables de entorno.
