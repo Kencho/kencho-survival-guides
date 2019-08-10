@@ -95,4 +95,6 @@ sudo docker run --rm -e 'TEXT1=Hola Docker!' -e 'TEXT2=Lorem ipsum' --name ubunt
 **TO DO**:
 
 - Volúmenes
+- Puertos
 - Imágenes personalizadas
+- docker-compose
