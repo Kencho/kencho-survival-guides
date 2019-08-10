@@ -92,9 +92,46 @@ Para definir nuevas variables de entorno, usaríamos el parámetro `-e 'Variable
 sudo docker run --rm -e 'TEXT1=Hola Docker!' -e 'TEXT2=Lorem ipsum' --name ubuntu_test ubuntu /usr/bin/env
 ```
 
+## Volúmenes
+
+Cuando queremos pasar datos persistentes entre el anfitrión y el contenedor, lo haremos normalmente usando volúmenes. Como cuando se montan volúmenes en un entorno Linux, aquí mapeamos una ruta en el anfitrión con una ruta en el contenedor.
+
+Para el ejemplo, crearemos la siguiente estructura de ficheros:
+
+```bash
+mkdir -p /tmp/{,read_only_}data_dir
+touch /tmp/{,read_only_}data_dir/file
+ls /tmp/*data_dir
+
+# /tmp/data_dir:
+# file
+
+# /tmp/read_only_data_dir:
+# file
+```
+
+Vamos a abrir un terminal en un contenedor de ubuntu, mapeando esos dos directorios a unos homólogos, con el sufijo `_docker` en el contenedor. Para ello definimos los volúmenes con el parámetro `-v ruta_anfitrion:ruta_contenedor`:
+
+```bash
+sudo docker run -it --rm -v /tmp/data_dir:/tmp/data_dir_docker -v /tmp/read_only_data_dir:/tmp/read_only_data_dir_docker:ro --name ubuntu_bash ubuntu /bin/bash
+```
+
+Atención, porque en el caso de `/tmp/read_only_data_dir_docker` hemos añadido un tercer valor `:ro`. Se pueden añadir _flags_ como se hace en la tabla de montajes de volúmenes `fstab`, en este caso indicando que queremos que monte el volumen como de solo lectura.
+
+Podemos comprobar su funcionamiento:
+
+```bash
+# Dentro del contenedor
+echo DATA1 > /tmp/data_dir_docker/file # OK
+echo DATA2 > /tmp/read_only_data_dir_docker/file # Error
+
+# Fuera del contenedor, en el anfitrión
+cat /tmp/data_dir/file # DATA1
+cat /tmp/read_only_data_dir/file # <vacío>
+```
+
 **TO DO**:
 
-- Volúmenes
 - Puertos
 - Imágenes personalizadas
 - docker-compose
