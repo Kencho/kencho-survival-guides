@@ -9,7 +9,7 @@ Docker es un sistema de ejecución contenida de procesos que permite ejecutar "m
 - **Imágenes**: Las imágenes representan un estado concreto del sistema de archivos de una "máquina virtual". Cuando se inician, será el punto de partida.
 - **Contenedores**: Son las "máquinas virtuales" en ejecución (a partir de ahora nos referiremos a ellas usando este término).
 
-## Instalación y ejecución
+## Instalación
 
 La mayoría de sistemas traerán una versión fácilmente instalable del servidor Docker.
 
@@ -24,11 +24,15 @@ Podemos comprobar que el servidor Docker está corriendo ejecutando (en sistemas
 systemctl status docker.service
 ```
 
+## Sintaxis general
+
 La forma de ejecutar comandos contra el servidor tiene la forma `docker [opciones] [{elemento}] {comando}` (algunos comandos no se aplican sobre ningún elemento). Ésto ejecutará el comando `{comando}` sobre el elemento `{elemento}`. Por ejemplo, si quisiéramos listar las imágenes disponibles en la máquina:
 
 ```bash
 sudo docker image ls
 ```
+
+## Descarga de imágenes
 
 Por defecto no habrá ninguna imagen instalada. Pueden obtenerse de un repositorio existente [Docker hub](https://hub.docker.com/) usando `docker pull`. Por ejemplo, para descargar una imagen con la versión más reciente de Ubuntu:
 
@@ -36,6 +40,8 @@ Por defecto no habrá ninguna imagen instalada. Pueden obtenerse de un repositor
 # Si se omite el tag latest, se usará ese por defecto. Se pueden especificar imágenes diferentes, como ubuntu:18.04
 sudo docker pull ubuntu:latest
 ```
+
+## Lanzar un contenedor
 
 Para levantar un nuevo contenedor a partir de esta imagen de Ubuntu, usaremos el comando `docker container run` (se puede omitir `container`):
 
