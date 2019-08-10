@@ -74,6 +74,20 @@ sudo docker run -dit --rm --name apache -p 8080:80 -v "$PWD":/usr/local/apache2/
 sudo docker exec -it apache /bin/bash
 ```
 
+## Detener y borrar contenedores activos
+
+Para detener un contenedor en ejecución se usa `docker stop nombre_del_contenedor`:
+
+```bash
+sudo docker stop apache
+```
+
+Esto lo detendrá pero no lo borrará si éste no se ha lanzado con el parámetro `--rm`. Para borrarlo de la lista de contenedores se usará de una forma similar `docker rm nombre_del_contenedor`:
+
+```bash
+sudo docker rm apache
+```
+
 ## Definir variables de entorno en el contenedor
 
 Una forma de parametrizar la ejecución de una imagen concreta al levantar un contenedor a partir de ella es definir variables de entorno.
